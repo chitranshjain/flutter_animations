@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutteranimations/BeatingAnimation.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -44,25 +45,33 @@ class _SplashScreenState extends State<SplashScreen>
 
   Widget firstChild() {
     Size size = MediaQuery.of(context).size;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        AnimatedBuilder(
-          animation: _arrowAnimationController,
-          builder: (context, child) => Transform.rotate(
-            angle: _arrowAnimation.value,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BeatingAnimation()),
+        );
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          AnimatedBuilder(
+            animation: _arrowAnimationController,
+            builder: (context, child) => Transform.rotate(
+              angle: _arrowAnimation.value,
 //            child: Icon(
 //              Icons.filter,
 //              size: 150,
 //            ),
-            child: Image.asset(
-              'assets/solvecase.png',
-              height: size.height * 0.5,
-              width: size.width,
+              child: Image.asset(
+                'assets/solvecase.png',
+                height: size.height * 0.5,
+                width: size.width,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
