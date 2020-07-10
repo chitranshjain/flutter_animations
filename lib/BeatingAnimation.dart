@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteranimations/AnimatedScreen.dart';
 
 class BeatingAnimation extends StatefulWidget {
   @override
@@ -38,21 +39,29 @@ class _BeatingAnimationState extends State<BeatingAnimation>
   }
 
   Widget secondChild() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        AnimatedBuilder(
-          animation: _beatingAnimationController,
-          builder: (context, child) {
-            return Center(
-                child: Icon(
-              Icons.favorite,
-              color: Colors.red,
-              size: _beatingAnimation.value,
-            ));
-          },
-        ),
-      ],
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnimatedScreen()),
+        );
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          AnimatedBuilder(
+            animation: _beatingAnimationController,
+            builder: (context, child) {
+              return Center(
+                  child: Icon(
+                Icons.favorite,
+                color: Colors.red,
+                size: _beatingAnimation.value,
+              ));
+            },
+          ),
+        ],
+      ),
     );
   }
 }
